@@ -1,13 +1,17 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="Width=device-width,initial-scale=1">
-        
-        <title>Myname</title>
-    </head>
-    <body>
-        <h1>浮田　信宏</h1>
-    </body>
-</html>
+
+{{-- resources/views/layouts/profile.blade.phpを読み込む --}}
+@extends('layouts.profile')
+
+{{-- profile.blade.phpの@yield('title')に'プロフィール紹介'を埋め込む --}}
+@section('title','プロフィール紹介')
+
+{{-- admin.blade.phpの@yield('content')に以下のタグを埋め込む --}}
+@section('content')
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <h2>プロフィール紹介</h2>
+            </div>
+        </div>
+    </div>
+@endsection    

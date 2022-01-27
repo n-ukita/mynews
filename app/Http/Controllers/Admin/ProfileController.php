@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-// 以下を追記することでNews Modelが扱えるようになる
-use App\News;
+// 以下を追記することでProfile Modelが扱えるようになる
+use App\Profile;
 
 class ProfileController extends Controller
 {
@@ -16,23 +16,16 @@ class ProfileController extends Controller
         return view('admin.profile.create');
     }
     
-    public function create()
+    public function create(Request $request)
     {
         
         // 以下を追記
         // Varidationを行う
-        $this->validate($request, News::$rules);
+        $this->validate($request, Profile::$rules);
         
-        $news = new News;
+        $profile = new Profile;
         $form = $request->all();
         
-        // フォームから画像が送られてきたら、保存して、$news->image_path に画像のパスを保存する
-        if (isset($form['image'])) {
-            $path = $request->file('image')->store('public/image');
-            $news->image_path = basename($path);
-        } else {
-            $news->image_path = null;
-        }
         
         // フォームから送信されてきた_tokenを削除する
         unset($form['_token']);
@@ -40,19 +33,34 @@ class ProfileController extends Controller
         unset($form['image']);
         
         //データベースに保存する
-        $news->fill($form);
-        $news->save();
+        $profile->fill($form);
+        $profile->save();
         
         return redirect('admin/profile/create');
     }
     
-    public function edit()
+    // 以下を追記
+    
+    public function edit(Request $request)
     {
-        return view('admin.profile.edit');
+        // Profoles Modelからデータを取得する
+        $profile = Profile::find($request->id);
+        if (empty($profile)) {
+            abort(404);
+        }
+        return view('admin.profile.edit', ['profile_form' => $profile]);
     }
     
-    public function update()
+    public function update(Request $request)
     {
+        // Validationをかける
+        $this->validate($request, Profile::$rules);
+        // Profile Modelからデータを取得する
+        $profile = Profile::find($request->id);
+        // 送信されてきたフォームデータを格納する
+        $profile_form = $request->all();
+        unset($profile_form['_token']);
+        
         return redirect('admin/profile/edit');
     }
 }

@@ -8,6 +8,12 @@ use App\Http\Controllers\Controller;
 // 以下を追記することでProfile Modelが扱えるようになる
 use App\Profile;
 
+// 以下を追記
+
+use App\ProfileHistory;
+
+use Carbon\Carbon;
+
 class ProfileController extends Controller
 {
     //以下を追記
@@ -39,6 +45,15 @@ class ProfileController extends Controller
         return redirect('admin/profile/create');
     }
     
+    // 以下を追記し、更新一覧を入れる
+    public function index(Request $request)
+    {
+        $posts = ProfileHistory::all(); 
+
+        return view('admin.profile.index');
+    }    
+    
+    
     // 以下を追記
     
     public function edit(Request $request)
@@ -60,7 +75,17 @@ class ProfileController extends Controller
         // 送信されてきたフォームデータを格納する
         $profile_form = $request->all();
         unset($profile_form['_token']);
+        unset($profile_form['remove']);
+        $profile->fill($profile_form)->save();
         
-        return redirect('admin/profile/edit');
+        // 以下を追記 
+        $profile_history = new ProfileHistory();
+        $profile_history->profile_id = $profile->id;
+        $profile_history->edited_at = Carbon::now();
+        $profile_history->save();
+        
+        
+        return view('admin.profile.edit', ['profile_form' => $profile]);
     }
 }
+

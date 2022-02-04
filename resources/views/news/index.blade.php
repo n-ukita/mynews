@@ -15,14 +15,13 @@
                                     @endif    
                                 </div>
                                 <div class="title p-2">
-                                    <h1>{{ str_limit($headline->title, 70) }}本日のニュース</h1>
+                                    <h1>{{ str_limit($headline->title, 70) }}</h1>
+                                    <P>デプロイ課題中</P>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <p class="body mx-auto">{{ str_limit($headline->body, 650) }}
-                            初めてのニュースの投稿になります。うまく反映されれば良いのですが･･･。
-                            </p>
+                            <p class="body mx-auto">{{ str_limit($headline->body, 650) }}</p>
                         </div>
                     </div>
                 </div>

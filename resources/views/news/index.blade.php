@@ -6,6 +6,7 @@
         @if (!is_null($headline))
             <div class="row">
                 <div class="headline col-md-10 mx-auto">
+                    <p>デブロイ練習中</p>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="caption mx-auto">
@@ -16,7 +17,6 @@
                                 </div>
                                 <div class="title p-2">
                                     <h1>{{ str_limit($headline->title, 70) }}</h1>
-                                    <P>デプロイ課題中</P>
                                 </div>
                             </div>
                         </div>

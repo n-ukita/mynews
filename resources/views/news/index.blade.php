@@ -3,10 +3,10 @@
 @section('content')
     <div class="container">
         <hr color="#c0c0c0">
+        <p>デブロイ勉強中</p>
         @if (!is_null($headline))
             <div class="row">
                 <div class="headline col-md-10 mx-auto">
-                    <p>デブロイ練習中</p>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="caption mx-auto">

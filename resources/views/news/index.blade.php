@@ -3,8 +3,8 @@
 @section('content')
     <div class="container">
         <hr color="#c0c0c0">
-        <p>デブロイ勉強中</p>
-        <img src="{{ $headline->image_path }}">
+        <p>デブロイ勉強中
+        <img src="{{ $headline->image_path }}"></p>
         @if (!is_null($headline))
             <div class="row">
                 <div class="headline col-md-10 mx-auto">

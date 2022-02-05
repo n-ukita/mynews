@@ -35,4 +35,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', 'NewsController@index');
+Route::post('/', 'NewsController@index');
 Route::get('/profile', 'ProfileController@index');
+Route::post('/profile', 'ProfileController@index');
